@@ -10,7 +10,7 @@ This short route is for a recruiter, instructor, or collaborator who wants to un
 | 0:45–1:45 | [`../case-studies/r-01.html`](../case-studies/r-01.html) | Reliability under pressure. The notes report two responses that avoided an exact clinic closing time, while the missing transcripts and model details stay visible as evidence gaps. |
 | 1:45–2:45 | [`../case-studies/p-01.html`](../case-studies/p-01.html) | Privacy judgment. A shared phone changes the recommendation: minimize the reminder, confirm permission, and avoid exposing a sensitive visit reason. |
 | 2:45–4:00 | [`../case-studies/e-01.html`](../case-studies/e-01.html) | A fictional launch review. The risk register is explicitly hypothetical, likelihood remains unknown, and proposed release gates connect evidence to accountable decisions. |
-| 4:00–5:00 | [`../lab/index.html`](../lab/index.html) | A working manual evaluation interface with five fictional scenarios, a human-scored rubric, local browser saving, and Markdown/JSON export. It has no model connection or automatic scoring. |
+| 4:00–5:00 | [`../lab/index.html`](../lab/index.html) | A working manual evaluation interface with six fictional scenarios, including the shared-phone reminder case, a human-scored rubric, local browser saving, and Markdown/JSON export. It has no model connection or automatic scoring. |
 
 ## What the work demonstrates
 
@@ -45,4 +45,3 @@ Do not present a scenario analysis or a proposed test as an observed result. Use
 - [`E-01_RISK_REGISTER.csv`](E-01_RISK_REGISTER.csv), [`E-01_TEST_PLAN.csv`](E-01_TEST_PLAN.csv), and [`E-01_RELEASE_GATES.csv`](E-01_RELEASE_GATES.csv) — tabletop artifacts, all clearly marked as proposed or open.
 - [`ACCEPTANCE_AUDIT.md`](ACCEPTANCE_AUDIT.md) — documented implementation review and known limitations.
 - [`BEFORE_SHARING_OR_PUBLISHING.md`](BEFORE_SHARING_OR_PUBLISHING.md) — owner review required before public release.
-

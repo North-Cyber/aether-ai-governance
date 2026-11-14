@@ -48,3 +48,7 @@ No other mandatory feature omission was found in this bounded review. No new fea
 ## Safe endpoint
 
 Only audit-created UI fixtures at the separate port-8767 origin were reset. The final lab showed blank response/notes, 0/5 scenarios and 0/15 criteria, including after navigation back to the lab. Existing original inputs and other origins were untouched. The audit tab is closed, temporary viewport override reset, preview execution session ended, and port 8767 has no listener. No background audit process remains running.
+
+## Post-audit scope note — 2026-11-14
+
+The project was extended after this audit with lab scenario P-03 (a shared-phone reminder test), a reviewer walkthrough, and a manual evaluation-record template. The audit and its 0/5, 0/15 browser observation refer to the 2026-11-13 five-scenario version. The updated six-scenario version has not received a new browser or acceptance audit, and P-03 has not been run against a model. No new model results are claimed.

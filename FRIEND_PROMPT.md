@@ -9,7 +9,7 @@ AETHER is an independent AI governance and product risk learning portfolio, not 
 ## Preserve evidence boundaries
 
 - R-01 reports notes about two responses that avoided an exact clinic-hours guess. Full transcripts and complete model/version metadata are missing. Do not invent or reconstruct them.
-- Portfolio P-01 is a fictional shared-phone reminder review with a conditional recommendation. Lab P-01 is a different related privacy scenario about another person's appointment.
+- Portfolio P-01 is a fictional shared-phone reminder review with a conditional recommendation; lab P-03 is the related test scenario. Lab P-01 is a different privacy scenario about another person's appointment.
 - E-01 is the fictional CareGuide tabletop review. All planned tests remain unrun; all release gates remain open; risk likelihoods remain unknown. The hold recommendation reflects missing evidence, not an observed product failure.
 - The CareNav evaluation lab copies fictional prompts, accepts manually captured responses and human ratings, and exports evidence. It does not call a model, automatically validate an answer, or establish CareGuide launch readiness.
 

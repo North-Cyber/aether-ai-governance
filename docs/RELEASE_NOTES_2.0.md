@@ -41,3 +41,9 @@ R-01 still needs full transcripts, model/version labels, dates/settings and repe
 No cross-browser, assistive-technology certification or live `file://` runtime test is claimed. Browser storage under `file://` differs by browser and path; export before moving the folder or clearing browser data. External framework links were retained, not revalidated, because framework-specific wording was not changed.
 
 The project remains static, local and unpublished. No accounts, model connections, tracking, backend or new dependencies were added. Nothing was sent to the friend. Original input files were preserved.
+
+## Follow-up after the 2026-11-13 audit
+
+- Added lab P-03, a shared-phone reminder scenario directly related to portfolio case P-01. The lab now has six scenarios and 18 criteria; the existing five scenarios retain their IDs.
+- Added `PORTFOLIO_WALKTHROUGH.md` for a five-minute reviewer tour and `EVALUATION_RECORD_TEMPLATE.md` for preserving exact prompts, actual responses, metadata, ratings, and limitations.
+- This follow-up was not run against an AI model and has not received a new browser or acceptance audit. The prior audit describes the earlier five-scenario source only. P-03 results remain untested; no response or score is claimed.

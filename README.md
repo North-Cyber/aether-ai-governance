@@ -31,7 +31,7 @@ Start with the homepage, then follow the guided tour in [`docs/PORTFOLIO_WALKTHR
 - `case-studies/r-01.html` — reliability exercise about unverified clinic hours.
 - `case-studies/p-01.html` — privacy exercise about a healthcare reminder on a shared phone.
 - `case-studies/e-01.html` — fictional tabletop launch review with a risk register, proposed test plan, evidence gaps, launch gates, and decision memo.
-- `lab/` — five manual, fictional AI evaluation scenarios and report export.
+- `lab/` — six manual, fictional AI evaluation scenarios and report export.
 - `docs/` — guided portfolio walkthrough, evaluation record template, project brief, case-study template, review notes, risk register, and sharing checklist.
 - `FRIEND_PROMPT.md` — current Aether 2.0 handoff for a collaborator or AI assistant.
 - `docs/ORIGINAL_FRIEND_PROMPT.md` — unchanged original v1 request, retained for provenance.
@@ -59,8 +59,8 @@ The ZIP is a portable handoff package. It intentionally does not include account
 ## Continue with evidence, not invented results
 
 1. For R-01, obtain the original transcripts or run a newly documented evaluation. Do not reconstruct missing responses.
-2. For P-01, preserve the exact reminder scenario and explain the consent and shared-device assumptions.
+2. For the shared-phone reminder review, use lab P-03 as the related manual test, while explaining the consent and shared-device assumptions.
 3. For E-01, start with the product boundary and proposed release-gate worksheet. All gates remain open, all planned tests unrun, and likelihoods unknown.
 4. Export lab evidence before clearing browser storage or moving the project. Local storage is browser- and location-dependent, not an encrypted archive or a backup.
 
-The portfolio P-01 is a **shared-phone reminder review**. The lab P-01 is a **different related scenario about another person's appointment**; matching IDs do not mean the lab is a reproduction of that case file. The fictional CareNav lab suite is not a tested implementation of the CareGuide tabletop product.
+The portfolio P-01 is a **shared-phone reminder review**; lab P-03 is the related scenario. Lab P-01 is a **different privacy exercise about another person's appointment**. Cite scenario titles along with IDs. The fictional CareNav lab suite is not a tested implementation of the CareGuide tabletop product.
