@@ -21,6 +21,10 @@ The project is educational and evidence-limited. It demonstrates a review method
 
 There is no build step, account, model API key, analytics, or backend. In the lab, the person running an evaluation copies a fictional test prompt into a separate AI chat, pastes the actual response back, rates it, and may export a Markdown or JSON report. Lab entries are kept in that browser's local storage when available.
 
+## Review this project in five minutes
+
+Start with the homepage, then follow the guided tour in [`docs/PORTFOLIO_WALKTHROUGH.md`](docs/PORTFOLIO_WALKTHROUGH.md). It points to the work and explains what each item demonstrates, what the evidence supports, and what is still unknown. If you want to run a genuine manual check, use the lab and save the actual prompt, response, model label, test date, and your rationale with [`docs/EVALUATION_RECORD_TEMPLATE.md`](docs/EVALUATION_RECORD_TEMPLATE.md).
+
 ## What's included
 
 - `index.html` — portfolio homepage and project overview.
@@ -28,7 +32,7 @@ There is no build step, account, model API key, analytics, or backend. In the la
 - `case-studies/p-01.html` — privacy exercise about a healthcare reminder on a shared phone.
 - `case-studies/e-01.html` — fictional tabletop launch review with a risk register, proposed test plan, evidence gaps, launch gates, and decision memo.
 - `lab/` — five manual, fictional AI evaluation scenarios and report export.
-- `docs/` — project brief, case-study template, update guidance, review notes, risk register, and sharing checklist.
+- `docs/` — guided portfolio walkthrough, evaluation record template, project brief, case-study template, review notes, risk register, and sharing checklist.
 - `FRIEND_PROMPT.md` — current Aether 2.0 handoff for a collaborator or AI assistant.
 - `docs/ORIGINAL_FRIEND_PROMPT.md` — unchanged original v1 request, retained for provenance.
 - `docs/E-01_RELEASE_GATES.csv` — proposed gate owners, evidence deliverables, and closure records.
