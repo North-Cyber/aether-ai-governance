@@ -46,4 +46,5 @@ The project remains static, local and unpublished. No accounts, model connection
 
 - Added lab P-03, a shared-phone reminder scenario directly related to portfolio case P-01. The lab now has six scenarios and 18 criteria; the existing five scenarios retain their IDs.
 - Added `PORTFOLIO_WALKTHROUGH.md` for a five-minute reviewer tour and `EVALUATION_RECORD_TEMPLATE.md` for preserving exact prompts, actual responses, metadata, ratings, and limitations.
-- This follow-up was not run against an AI model and has not received a new browser or acceptance audit. The prior audit describes the earlier five-scenario source only. P-03 results remain untested; no response or score is claimed.
+- Added a dependency-free Node test file. Source syntax and all six follow-up tests pass; internal HTML references/ARIA targets, duplicate IDs, the three CSV worksheets, and common credential patterns were checked. See `QA_LOGIC_FOLLOWUP_2026-11-14.json`.
+- P-03 was not run against an AI model, and the follow-up source has not been browser-tested locally. The prior audit describes the earlier five-scenario source only. P-03 results remain untested; no response or score is claimed.

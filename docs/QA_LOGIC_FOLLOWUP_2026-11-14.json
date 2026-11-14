@@ -1,0 +1,36 @@
+{
+  "sourcePath": "lab/app.js",
+  "sourceSHA256": "be894590613a0e0c76a414f1b32eeef5dc869dea7069a7e1c2eed263713e8560",
+  "generatedAt": "2026-11-14T04:53:59Z",
+  "method": "Node built-in test runner with a VM context; no browser, storage profile, external service, or AI model was used",
+  "nodeVersion": "v24.22.1",
+  "passed": 6,
+  "failed": 0,
+  "results": [
+    {
+      "name": "Six unique scenarios each have three human-rating criteria",
+      "pass": true
+    },
+    {
+      "name": "P-03 prompt and rubric cover shared-phone exposure and avoid assumed access",
+      "pass": true
+    },
+    {
+      "name": "Fresh state creates blank entries for all six scenarios",
+      "pass": true
+    },
+    {
+      "name": "Older five-scenario saved record loads without losing prior entries or writing on load",
+      "pass": true
+    },
+    {
+      "name": "Completed P-03 record exports a human-rated result and preserves unknown metadata",
+      "pass": true
+    },
+    {
+      "name": "Unrecorded P-03 remains incomplete rather than being counted as a pass",
+      "pass": true
+    }
+  ],
+  "limits": "These are application-logic checks only. They do not establish browser rendering, actual clipboard behavior, model behavior, or safety of a real product."
+}

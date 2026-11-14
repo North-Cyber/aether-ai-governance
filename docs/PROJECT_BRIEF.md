@@ -49,7 +49,7 @@ This is a learning process, not a formal audit method. Where useful, the project
 
 ## Sharing and publishing
 
-The current handoff is local and portable. Public hosting can be considered later after the owner reviews all content and approves publication. Do not share credentials, account-specific hosting metadata, or unreviewed evaluation exports.
+The source repository and static portfolio are publicly available through GitHub Pages. Every change pushed to `main` is public. The site has no backend, analytics, account login, or model API connection. Keep credentials, account-specific settings, real personal/health/identity data, and unreviewed evaluation exports out of the repository and public site.
 
 ## Scenario identifiers
 

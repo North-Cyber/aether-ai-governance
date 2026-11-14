@@ -4,6 +4,8 @@ AI Governance & Product Risk Portfolio
 
 AETHER is an independent, hands-on learning and portfolio project about how teams can evaluate AI products before release. The site is a static, locally runnable prototype: it includes a portfolio homepage, three scenario-based case files, and a browser-based evaluation lab.
 
+**Live portfolio:** [AETHER 2.0](https://north-cyber.github.io/aether-ai-governance/)
+
 ## Project highlights
 
 - Turn AI product concerns into concrete test scenarios, risk hypotheses, and proposed release gates.
@@ -15,11 +17,15 @@ The project is educational and evidence-limited. It demonstrates a review method
 
 ## Open the site
 
-1. Clone or download this repository, or extract the share-ready ZIP.
+1. Visit the [live portfolio](https://north-cyber.github.io/aether-ai-governance/), clone or download this repository, or extract the share-ready ZIP.
 2. Open `index.html` in a current browser.
 3. Use the homepage links to visit the case files and `lab/`.
 
 There is no build step, account, model API key, analytics, or backend. In the lab, the person running an evaluation copies a fictional test prompt into a separate AI chat, pastes the actual response back, rates it, and may export a Markdown or JSON report. Lab entries are kept in that browser's local storage when available.
+
+## Optional code checks
+
+The site itself needs only a browser. To run the dependency-free lab logic checks, install Node.js 18 or newer and run `node --check lab/app.js` followed by `node --test tests/lab.test.mjs` from the project folder. These checks cover the lab's scenario data, prompts, saved-state compatibility, and evidence reports; they do not test an AI model or replace a browser review.
 
 ## Review this project in five minutes
 
@@ -28,10 +34,12 @@ Start with the homepage, then follow the guided tour in [`docs/PORTFOLIO_WALKTHR
 ## What's included
 
 - `index.html` — portfolio homepage and project overview.
+- `404.html` — branded page for missing URLs on the published site.
 - `case-studies/r-01.html` — reliability exercise about unverified clinic hours.
 - `case-studies/p-01.html` — privacy exercise about a healthcare reminder on a shared phone.
 - `case-studies/e-01.html` — fictional tabletop launch review with a risk register, proposed test plan, evidence gaps, launch gates, and decision memo.
 - `lab/` — six manual, fictional AI evaluation scenarios and report export.
+- `tests/lab.test.mjs` — optional Node built-in tests for scenario data, prompt construction, saved-state compatibility, and evidence output.
 - `docs/` — guided portfolio walkthrough, evaluation record template, project brief, case-study template, review notes, risk register, and sharing checklist.
 - `FRIEND_PROMPT.md` — current Aether 2.0 handoff for a collaborator or AI assistant.
 - `docs/ORIGINAL_FRIEND_PROMPT.md` — unchanged original v1 request, retained for provenance.
@@ -54,7 +62,7 @@ The work is educational. It is not a real organization audit, clinical evaluatio
 
 ## Sharing and publishing
 
-The ZIP is a portable handoff package. It intentionally does not include account-specific hosting metadata, credentials, or private evaluation results. The static website is structured for a future static host, but it has **not been published**. Review `docs/BEFORE_SHARING_OR_PUBLISHING.md` before making it public.
+The repository and static site are public. GitHub Pages publishes the repository root from `main` at the live portfolio URL above; each push to `main` becomes public. The share ZIP contains source and documentation, but no account credentials or local evaluation exports. Review `docs/BEFORE_SHARING_OR_PUBLISHING.md` before future updates. Keep real personal, health, and identity data out of the lab and repository.
 
 ## Continue with evidence, not invented results
 

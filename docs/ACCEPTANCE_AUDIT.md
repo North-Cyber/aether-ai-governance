@@ -49,6 +49,10 @@ No other mandatory feature omission was found in this bounded review. No new fea
 
 Only audit-created UI fixtures at the separate port-8767 origin were reset. The final lab showed blank response/notes, 0/5 scenarios and 0/15 criteria, including after navigation back to the lab. Existing original inputs and other origins were untouched. The audit tab is closed, temporary viewport override reset, preview execution session ended, and port 8767 has no listener. No background audit process remains running.
 
-## Post-audit scope note — 2026-11-14
+## Follow-up review — 2026-11-14
 
-The project was extended after this audit with lab scenario P-03 (a shared-phone reminder test), a reviewer walkthrough, and a manual evaluation-record template. The audit and its 0/5, 0/15 browser observation refer to the 2026-11-13 five-scenario version. The updated six-scenario version has not received a new browser or acceptance audit, and P-03 has not been run against a model. No new model results are claimed.
+The project was extended after the 2026-11-13 audit with lab scenario P-03 (a shared-phone reminder test), a reviewer walkthrough, an evaluation-record template, a custom 404 page, and a dependency-free Node test file. The original audit and its 0/5, 0/15 browser observation refer to the earlier five-scenario version.
+
+- `node --check lab/app.js` passed; `node --test tests/lab.test.mjs` passed all **6 tests** (0 failed) on Node v24.22.1. The tests cover six unique scenarios / 18 criteria, P-03 prompt and rubric content, blank new state, loading an older five-scenario record without writes, complete human-rated evidence output, and incomplete records remaining incomplete. Exact results and current `lab/app.js` SHA-256 are in `QA_LOGIC_FOLLOWUP_2026-11-14.json`.
+- A source-level HTML review covered seven pages: local files/fragments and ARIA ID references resolve, and no duplicate IDs were found. CSV parsing found 7 risk rows, 8 planned test rows, and 7 release gates. A source scan found no common credential patterns or `.env` files.
+- The local browser preview could not be opened in the available browser environment because its URL policy blocks local file access. The follow-up has not received a local browser, cross-browser, assistive-technology, or complete accessibility audit. P-03 and all E-01 planned product tests remain unrun against a model/product. No new AI results are claimed.

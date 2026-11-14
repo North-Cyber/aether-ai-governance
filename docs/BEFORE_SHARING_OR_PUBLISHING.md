@@ -1,13 +1,12 @@
-# Before sharing or publishing
+# Sharing and publishing checklist
 
-This package is prepared for private review. Check the following before making the website public or sending a future version broadly.
+The AETHER repository and static website are publicly available. Use this checklist before changing the public site or distributing a new archive.
 
-- Read every page and confirm that observations, simulations, and plans are labeled accurately.
-- Remove any real patient, employee, or identity data from the site and browser-exported lab reports. The lab should use synthetic scenarios only.
-- Review every external link and framework reference; confirm it still points to an authoritative source.
-- Check the site at phone and desktop widths, follow every main link, and verify keyboard focus and skip links.
-- Decide whether the page should include real contact details or professional profile links; none have been invented here.
-- Keep account-specific hosting metadata, credentials, and private evaluation exports out of share archives.
-- Public hosting is a separate action. Do not publish until the owner explicitly approves it.
+- Keep examples fictional and observations, simulations, and plans labeled accurately.
+- Never publish real patient, employee, identity information, provider conversation identifiers, private evaluation exports, or credentials.
+- Review external links and framework references before changing them.
+- Recheck phone and desktop layouts, primary navigation, keyboard focus, and skip links after content or code changes.
+- Add professional contact links only when the owner supplies and approves them.
+- Treat every push to `main` as a public release; avoid committing local reports, backups, or machine-specific settings.
 
-The current package has no backend, analytics, login, or model API connection. When a user copies a prompt into an external AI provider, that provider handles the conversation under its own settings and policies.
+The site has no backend, analytics, login, or model API connection. When someone copies a prompt into an external AI provider, that provider handles the conversation under its own settings and policies. Lab entries stay in that browser unless the evaluator exports them.

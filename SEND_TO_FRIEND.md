@@ -1,7 +1,7 @@
-# Optional message to accompany Aether 2.0.zip
+# Optional message to accompany AETHER-Portfolio-2.0-Public.zip
 
-Aether 2.0 keeps the original design, with subtle homepage polish rather than a redesign. It fixes mobile links, accessibility and contrast; improves the lab’s saved-data protection and report exports; clarifies the case studies’ evidence limits; and adds actionable launch gates plus beginner-friendly handoff notes. Extract the ZIP and open index.html. It is self-contained and has not been published.
+Aether 2.0 keeps its original design and is now a public, static GitHub Pages portfolio. Extract the ZIP and open `index.html`, or visit the public project site. It includes three case studies, a six-scenario manual evaluation lab, an evidence-focused reviewer walkthrough, and an evaluation record template.
 
-The review passed 30 logic checks and verified local navigation, saving, prompt copying and actual report downloads. No new AI evaluations were run: missing transcripts and product evidence remain missing. Other browsers, direct file-open runtime behavior and the reset Cancel interaction were not fully verified. The full requirement-by-requirement review is in docs/ACCEPTANCE_AUDIT.md.
+The 2026-11-13 acceptance audit covers the earlier five-scenario lab. The six-scenario follow-up received a fresh source, link, and browser review; it was not independently benchmarked against AI models. R-01 still lacks original transcripts, and E-01 remains a fictional tabletop with open gates and unrun product tests. See `docs/ACCEPTANCE_AUDIT.md` for scope and verification limits.
 
-This is a draft for the owner to send. No message has been sent by this project.
+This is a draft for the owner to send. No message is sent by the project.
