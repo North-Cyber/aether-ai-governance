@@ -1,0 +1,22 @@
+# Local editor and operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+
+# Local development output
+node_modules/
+dist/
+build/
+*.log
+
+# Credentials and machine-specific settings
+.env
+.env.*
+!.env.example
+
+# Local evaluation exports and recovery backups
+Aether_original_saved_data.txt
+Aether_2.0_*.md
+Aether_2.0_*.json

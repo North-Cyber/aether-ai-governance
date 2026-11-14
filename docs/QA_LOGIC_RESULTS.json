@@ -1,0 +1,130 @@
+{
+  "sourcePath": "lab/app.js",
+  "sourceSHA256": "ab2478f2a06c2a8a78bb5e5569c576a6c5caa1577cde8fa2cf4495b2b977a52f",
+  "generatedAt": "2026-11-13T00:34:15.567Z",
+  "method": "Node vm with minimal document/window/storage stubs; setup not invoked; no browser storage touched",
+  "passed": 30,
+  "failed": 0,
+  "results": [
+    {
+      "name": "Script evaluation registers but does not initialize or write",
+      "pass": true
+    },
+    {
+      "name": "Valid legacy v01 migrates shared model and exact response/notes/scores without writing",
+      "pass": true
+    },
+    {
+      "name": "Valid v2 per-case metadata retained",
+      "pass": true
+    },
+    {
+      "name": "Invalid structure preserves raw and blocks save: malformed JSON",
+      "pass": true
+    },
+    {
+      "name": "Invalid structure preserves raw and blocks save: empty saved string",
+      "pass": true
+    },
+    {
+      "name": "Invalid structure preserves raw and blocks save: null root",
+      "pass": true
+    },
+    {
+      "name": "Invalid structure preserves raw and blocks save: array root",
+      "pass": true
+    },
+    {
+      "name": "Invalid structure preserves raw and blocks save: missing cases",
+      "pass": true
+    },
+    {
+      "name": "Invalid structure preserves raw and blocks save: array cases",
+      "pass": true
+    },
+    {
+      "name": "Invalid structure preserves raw and blocks save: bad score",
+      "pass": true
+    },
+    {
+      "name": "Invalid structure preserves raw and blocks save: bad response",
+      "pass": true
+    },
+    {
+      "name": "Invalid structure preserves raw and blocks save: null scenario",
+      "pass": true
+    },
+    {
+      "name": "Invalid structure preserves raw and blocks save: false scenario",
+      "pass": true
+    },
+    {
+      "name": "Invalid structure preserves raw and blocks save: zero scenario",
+      "pass": true
+    },
+    {
+      "name": "Invalid structure preserves raw and blocks save: empty-string scenario",
+      "pass": true
+    },
+    {
+      "name": "Partial parse failure resets in-memory state while retaining entire original",
+      "pass": true
+    },
+    {
+      "name": "Absent saved entry leaves fresh state and does not write on load",
+      "pass": true
+    },
+    {
+      "name": "Missing storage global does not crash load or save",
+      "pass": true
+    },
+    {
+      "name": "Throwing read and write storage does not crash and reports unavailable",
+      "pass": true
+    },
+    {
+      "name": "Write quota failure reports unavailable without claiming save",
+      "pass": true
+    },
+    {
+      "name": "Report preserves exact literal backticks and Markdown in response and notes",
+      "pass": true
+    },
+    {
+      "name": "Blank metadata stays unknown; generated timestamp labeled not test time",
+      "pass": true
+    },
+    {
+      "name": "Completion requires non-whitespace response and all three scores; zero is a score",
+      "pass": true
+    },
+    {
+      "name": "JSON evidence has schema/provenance and preserves unknowns",
+      "pass": true
+    },
+    {
+      "name": "Report filenames include safe timestamp and requested extension",
+      "pass": true
+    },
+    {
+      "name": "Complete prompt includes shared brief and exact scenario once: R-01",
+      "pass": true
+    },
+    {
+      "name": "Complete prompt includes shared brief and exact scenario once: P-01",
+      "pass": true
+    },
+    {
+      "name": "Complete prompt includes shared brief and exact scenario once: P-02",
+      "pass": true
+    },
+    {
+      "name": "Complete prompt includes shared brief and exact scenario once: S-01",
+      "pass": true
+    },
+    {
+      "name": "Complete prompt includes shared brief and exact scenario once: A-01",
+      "pass": true
+    }
+  ]
+}

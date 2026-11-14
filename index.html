@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5ef">
+  <meta name="description" content="AETHER is an independent, hands-on portfolio project exploring AI governance, product risk, and responsible release decisions.">
+  <title>Aether 2.0 | Responsible AI, considered before launch</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%231a403c'/%3E%3Cpath d='M16 46 30.5 17a2 2 0 0 1 3.4 0L48 46M23.5 34.5h17' fill='none' stroke='%23e8f1e9' stroke-width='5.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <style>
+    .release-tag { font: 600 10px/1 ui-sans-serif, sans-serif; letter-spacing: 0; vertical-align: middle; }
+    :root {
+      color-scheme: light;
+      --ink: #183431;
+      --ink-soft: #42605a;
+      --muted: #52665b;
+      --forest: #1b403b;
+      --forest-2: #244c46;
+      --moss: #8fa997;
+      --mint: #d6e2d8;
+      --paper: #f5f5ef;
+      --white: #fffefa;
+      --line: #d9e0d8;
+      --sand: #ecebe2;
+      --lime: #d7e6b4;
+      --max: 1210px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.65 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, summary:focus-visible { outline: 3px solid #6f9f8e; outline-offset: 4px; border-radius: 3px; }
+    img, svg { display: block; max-width: 100%; }
+    .shell { width: min(var(--max), calc(100% - 64px)); margin-inline: auto; }
+    .skip-link { position: absolute; top: 8px; left: 8px; z-index: 30; padding: 10px 14px; border-radius: 8px; color: #fff; background: var(--forest); transform: translateY(-150%); }
+    .skip-link:focus { transform: translateY(0); }
+    .masthead { position: sticky; z-index: 20; top: 0; border-bottom: 1px solid #d9e0d8cc; background: #f5f5efe8; backdrop-filter: blur(16px); }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; white-space: nowrap; }
+    .brand-mark { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 11px; color: #eef4ea; background: var(--forest); }
+    .brand-mark svg { width: 24px; height: 24px; }
+    .brand-copy strong { display: block; font-size: 15px; line-height: 1.1; letter-spacing: .22em; font-weight: 800; }
+    .brand-copy small { display: block; margin-top: 4px; color: #708179; font-size: 9px; line-height: 1.15; letter-spacing: .12em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: clamp(18px, 3vw, 36px); margin-left: auto; }
+    .nav-links a, .mobile-nav summary { color: #526a62; font-size: 12px; font-weight: 650; transition: color .18s; }
+    .nav-links a:hover, .mobile-nav a:hover { color: var(--forest); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 12px; padding: 10px 15px; border: 1px solid #c7d5ca; border-radius: 8px; color: var(--forest); font-size: 12px; font-weight: 730; transition: background .18s, transform .18s; }
+    .nav-cta:hover { background: #e7eee6; transform: translateY(-1px); }
+    .nav-cta span { font-size: 16px; line-height: 1; }
+    .mobile-nav { display: none; position: relative; }
+    .mobile-nav summary { list-style: none; cursor: pointer; padding: 9px 0; }
+    .mobile-nav summary::-webkit-details-marker { display: none; }
+    .mobile-nav-panel { position: absolute; right: 0; top: calc(100% + 12px); display: grid; gap: 2px; width: 190px; padding: 8px; border: 1px solid var(--line); border-radius: 12px; background: var(--white); box-shadow: 0 15px 35px #193c3620; }
+    .mobile-nav-panel a { padding: 10px 12px; border-radius: 7px; color: var(--ink-soft); font-size: 13px; }
+    .mobile-nav-panel a:hover { background: #edf2eb; }
+
+    .hero { position: relative; display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(350px, .96fr); align-items: center; gap: clamp(42px, 7vw, 96px); padding-block: 74px 78px; }
+    .hero-copy { position: relative; z-index: 2; padding-block: 18px; }
+    .eyebrow, .section-label { display: inline-flex; align-items: center; gap: 10px; color: #54766a; font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow::before { width: 22px; height: 1px; content: ""; background: #6d9384; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 720px; margin: 22px 0 21px; font: 400 clamp(52px, 6vw, 82px)/.99 Georgia, "Times New Roman", serif; letter-spacing: -.065em; }
+    h1 em { color: #52786c; font-style: italic; }
+    .hero-lead { max-width: 570px; margin-bottom: 28px; color: #536760; font-size: 17px; line-height: 1.78; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 11px; }
+    .button { min-height: 47px; display: inline-flex; align-items: center; justify-content: center; gap: 15px; padding: 12px 18px; border: 1px solid transparent; border-radius: 9px; font-size: 12px; font-weight: 740; transition: transform .18s, background .18s, border-color .18s; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { color: #f7f8f2; background: var(--forest); box-shadow: 0 7px 18px #193e3820; }
+    .button-primary:hover { background: #2c5a51; }
+    .button-quiet { border-color: #c9d7cc; color: var(--forest); background: transparent; }
+    .button-quiet:hover { background: #e9efe7; }
+    .button-arrow { font-size: 17px; font-weight: 400; line-height: 1; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 25px; color: #76877f; font-size: 11px; }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+    .hero-meta span::before { width: 4px; height: 4px; border-radius: 50%; content: ""; background: #82a08e; }
+    .review-visual { min-height: 476px; position: relative; overflow: hidden; padding: 26px; border: 1px solid #315d5540; border-radius: 19px; color: #f3f5ed; background: linear-gradient(150deg, #1b403b 0%, #254c45 62%, #345b51 100%); box-shadow: 0 24px 60px #29494120; isolation: isolate; }
+    .review-visual::before { position: absolute; z-index: -1; inset: -18%; content: ""; background: radial-gradient(ellipse at 74% 28%, #aec9ae30, transparent 37%), radial-gradient(ellipse at 13% 100%, #122f2c90, transparent 45%); }
+    .contours { position: absolute; z-index: -1; right: -22%; bottom: -18%; width: 130%; opacity: .56; transform: rotate(-12deg); }
+    .contours path { fill: none; stroke: #d1e0ce; stroke-width: 1.1; opacity: .7; }
+    .visual-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .visual-index { color: #b3cbc0; font-size: 9px; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; }
+    .live-label { display: inline-flex; align-items: center; gap: 7px; padding: 6px 9px; border: 1px solid #c6dbcb4a; border-radius: 99px; color: #d8e8db; background: #ffffff0c; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .live-label::before { width: 6px; height: 6px; border-radius: 50%; content: ""; background: #c7dca6; }
+    .visual-title { margin: 54px 0 2px; font: 400 35px/1.12 Georgia, "Times New Roman", serif; letter-spacing: -.04em; }
+    .visual-subtitle { color: #c3d4ca; font-size: 12px; }
+    .review-path { position: relative; display: grid; gap: 0; margin-top: 36px; padding-left: 19px; }
+    .review-path::before { position: absolute; left: 5px; top: 9px; bottom: 18px; width: 1px; content: ""; background: linear-gradient(#bed7b5, #b9d1bd35); }
+    .path-step { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 10px; padding: 0 0 19px; }
+    .path-step::before { position: absolute; top: 6px; left: -18px; width: 7px; height: 7px; border: 1px solid #d7e6d1; border-radius: 50%; content: ""; background: #285148; box-shadow: 0 0 0 4px #2a554b; }
+    .path-step strong { font-size: 12px; font-weight: 680; }
+    .path-step small { color: #b8cdc2; font-size: 10px; }
+    .path-step .path-state { color: #cfdfb0; font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+    .visual-bottom { display: flex; justify-content: space-between; gap: 16px; padding-top: 17px; border-top: 1px solid #d7e6d12e; color: #e5ece3; font-size: 10px; }
+    .visual-bottom span:first-child { color: #adc4b8; letter-spacing: .08em; text-transform: uppercase; }
+    .visual-mark { position: absolute; right: 22px; bottom: 19px; width: 50px; height: 50px; color: #d2e3d0; opacity: .4; }
+
+    .trust-strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #eeefe8; }
+    .trust-items { min-height: 67px; display: flex; align-items: center; justify-content: space-between; gap: 14px 25px; flex-wrap: wrap; padding-block: 14px; }
+    .trust-intro { color: #68796f; font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .trust-pill { color: #425c53; font-size: 11px; font-weight: 620; }
+    .trust-pill::before { margin-right: 9px; color: #72907e; content: "•"; }
+
+    .section { padding-block: 102px; }
+    .section-heading { display: grid; grid-template-columns: .9fr 1.1fr; align-items: end; gap: 36px; margin-bottom: 35px; }
+    .section-label { margin-bottom: 14px; }
+    h2 { margin-bottom: 0; font: 400 clamp(36px, 4.5vw, 56px)/1.04 Georgia, "Times New Roman", serif; letter-spacing: -.055em; }
+    .section-heading > p { max-width: 500px; margin: 0 0 4px; color: #61736a; font-size: 15px; line-height: 1.8; }
+    .definition-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: 20px; }
+    .definition-main { padding: 32px 34px; border: 1px solid var(--line); border-radius: 15px; background: var(--white); }
+    .definition-main p { max-width: 650px; margin: 0; color: #4e675d; font-size: 17px; line-height: 1.85; }
+    .definition-main strong { color: var(--forest); font-weight: 720; }
+    .scope-card { position: relative; overflow: hidden; min-height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 27px 28px; border-radius: 15px; color: #eaf1e8; background: var(--forest); }
+    .scope-card::after { position: absolute; right: -65px; bottom: -105px; width: 215px; height: 215px; border: 1px solid #dae9dc38; border-radius: 50%; content: ""; box-shadow: 0 0 0 32px #dae9dc12, 0 0 0 65px #dae9dc0c; }
+    .scope-overline { color: #bfd2c4; font-size: 9px; font-weight: 760; letter-spacing: .14em; text-transform: uppercase; }
+    .scope-card strong { position: relative; z-index: 1; display: block; max-width: 280px; margin: 28px 0; font: 400 27px/1.2 Georgia, "Times New Roman", serif; letter-spacing: -.035em; }
+    .scope-card small { position: relative; z-index: 1; color: #c5d9ca; font-size: 11px; line-height: 1.7; }
+
+    .method-section { padding-block: 92px 100px; color: #f1f3ec; background: #1b403b; }
+    .method-section .section-label { color: #b9d0c2; }
+    .method-section .section-heading > p { color: #c4d5ca; }
+    .method-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; margin-top: 44px; border-top: 1px solid #aac3b33d; border-bottom: 1px solid #aac3b33d; }
+    .method-step { position: relative; min-height: 191px; padding: 21px 17px 23px 0; }
+    .method-step:not(:last-child)::after { position: absolute; top: 31px; right: 17px; width: 1px; height: calc(100% - 48px); content: ""; background: #aac3b32b; }
+    .method-number { color: #c5d7b1; font-size: 10px; font-weight: 740; letter-spacing: .12em; }
+    .method-step h3 { margin: 35px 16px 8px 0; color: #f3f4ed; font-size: 15px; letter-spacing: -.02em; }
+    .method-step p { max-width: 175px; margin: 0 15px 0 0; color: #b7cbbf; font-size: 11px; line-height: 1.7; }
+
+    .work-section { padding-block: 100px; background: #eeefe8; }
+    .work-heading { margin-bottom: 35px; }
+    .work-heading .section-heading { margin-bottom: 0; }
+    .case-list { display: grid; gap: 12px; }
+    .case-card { display: grid; grid-template-columns: 94px minmax(0, 1fr) 165px; align-items: center; gap: 22px; padding: 24px 27px; border: 1px solid #d8e0d8; border-radius: 13px; background: #fbfbf6; transition: transform .2s, box-shadow .2s, border-color .2s; }
+    .case-card:hover { border-color: #b5cabb; box-shadow: 0 10px 25px #244c4010; transform: translateY(-2px); }
+    .case-id { align-self: stretch; display: flex; flex-direction: column; justify-content: space-between; padding-right: 18px; border-right: 1px solid var(--line); }
+    .case-id strong { color: #41675a; font-size: 12px; letter-spacing: .07em; }
+    .case-icon { width: 33px; height: 33px; display: grid; place-items: center; border-radius: 9px; color: #3f6b5b; background: #e4eee3; }
+    .case-icon svg { width: 19px; height: 19px; }
+    .case-copy h3 { margin: 0 0 5px; color: var(--ink); font-size: 16px; letter-spacing: -.025em; }
+    .case-copy p { max-width: 700px; margin: 0; color: #65756c; font-size: 12px; line-height: 1.7; }
+    .case-status { justify-self: end; display: inline-flex; align-items: center; gap: 7px; max-width: 165px; padding: 8px 10px; border: 1px solid #d4ded3; border-radius: 99px; color: #547063; background: #f4f6ef; font-size: 9px; font-weight: 740; letter-spacing: .04em; text-align: center; }
+    .case-status::before { width: 6px; height: 6px; flex: 0 0 6px; border-radius: 50%; content: ""; background: #8eae91; }
+    .case-status.in-progress { border-color: #e2d8be; color: #806b42; background: #f8f4e8; }
+    .case-status.in-progress::before { background: #c7a85e; }
+    .work-footnote { margin: 16px 0 0; color: #78877d; font-size: 10px; }
+
+    .lab-section { padding-block: 100px; }
+    .lab-card { position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(270px, .88fr); align-items: center; gap: 34px; padding: clamp(27px, 5vw, 56px); border-radius: 19px; color: #f1f4ed; background: linear-gradient(130deg, #214942, #183c37); box-shadow: 0 20px 48px #163c351b; }
+    .lab-card::before { position: absolute; right: -90px; top: -170px; width: 420px; height: 420px; border: 1px solid #bdd7c02c; border-radius: 50%; content: ""; box-shadow: 0 0 0 35px #bdd7c00f, 0 0 0 70px #bdd7c00c, 0 0 0 105px #bdd7c008; }
+    .lab-copy, .lab-facts { position: relative; z-index: 1; }
+    .lab-card .section-label { color: #c5d8bb; }
+    .lab-card h2 { max-width: 540px; margin-bottom: 16px; font-size: clamp(34px, 4.1vw, 52px); }
+    .lab-card p { max-width: 550px; margin: 0 0 24px; color: #c8d9cf; font-size: 13px; line-height: 1.8; }
+    .lab-card .button-primary { color: var(--forest); background: #e4edd4; box-shadow: none; }
+    .lab-card .button-primary:hover { background: #f0f4e6; }
+    .lab-facts { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid #d8e9d12b; border-left: 1px solid #d8e9d12b; }
+    .lab-fact { min-height: 88px; display: flex; flex-direction: column; justify-content: center; padding: 14px 17px; border-right: 1px solid #d8e9d12b; border-bottom: 1px solid #d8e9d12b; }
+    .lab-fact strong { color: #f1f3ed; font: 400 27px/1 Georgia, "Times New Roman", serif; }
+    .lab-fact span { margin-top: 8px; color: #bfd3c6; font-size: 9px; font-weight: 720; letter-spacing: .09em; text-transform: uppercase; }
+    .lab-disclaimer { margin: 14px 0 0 !important; color: #a6c0b1 !important; font-size: 10px !important; }
+
+    .about-section { padding-block: 92px 110px; border-top: 1px solid var(--line); }
+    .about-grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: 72px; }
+    .about-heading h2 { max-width: 360px; }
+    .about-copy { max-width: 720px; }
+    .about-copy p { color: #5d7066; font-size: 15px; line-height: 1.85; }
+    .about-copy strong { color: var(--forest); font-weight: 710; }
+    .direction-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 21px; }
+    .direction-chip { padding: 8px 11px; border: 1px solid #d2ded3; border-radius: 99px; color: #486459; background: #fafbf6; font-size: 10px; font-weight: 680; }
+    .boundaries { display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; margin-top: 55px; padding: 24px 0 0; border-top: 1px solid var(--line); }
+    .boundaries h3 { margin: 0 0 7px; color: #34554b; font-size: 12px; letter-spacing: .03em; }
+    .boundaries p { max-width: 650px; margin: 0; color: #718077; font-size: 11px; line-height: 1.8; }
+    .boundary-note { justify-self: end; max-width: 290px; color: #557064; font-size: 11px; font-weight: 680; line-height: 1.65; }
+
+    .footer { border-top: 1px solid var(--line); background: #edeee7; }
+    .footer-inner { min-height: 103px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer-brand { display: flex; align-items: center; gap: 10px; }
+    .footer-brand .brand-mark { width: 29px; height: 29px; border-radius: 8px; }
+    .footer-brand .brand-mark svg { width: 19px; height: 19px; }
+    .footer-brand strong { font-size: 11px; letter-spacing: .2em; }
+    .footer-inner small { color: #718177; font-size: 10px; }
+    .footer-top { color: #547267; font-size: 10px; font-weight: 700; }
+
+    @media (max-width: 920px) {
+      .hero { grid-template-columns: minmax(0, 1.02fr) minmax(305px, .98fr); gap: 34px; padding-block: 61px; }
+      .review-visual { min-height: 445px; }
+      .method-grid { grid-template-columns: repeat(3, 1fr); }
+      .method-step:nth-child(3)::after { display: none; }
+      .method-step:nth-child(n+4) { border-top: 1px solid #aac3b33d; }
+      .about-grid { gap: 40px; }
+    }
+    @media (max-width: 700px) {
+      .shell { width: min(100% - 38px, 560px); }
+      .nav { min-height: 69px; gap: 12px; }
+      .brand-mark { width: 33px; height: 33px; }
+      .brand-copy strong { font-size: 14px; }
+      .brand-copy small { font-size: 8px; }
+      .nav-links { display: none; }
+      .mobile-nav { display: block; margin-left: auto; }
+      .nav-cta { min-height: 37px; padding: 8px 10px; gap: 7px; font-size: 10px; }
+      .nav-cta span { font-size: 14px; }
+      .hero { display: flex; flex-direction: column; align-items: stretch; gap: 34px; padding-block: 52px 56px; }
+      .hero-copy { padding: 0; }
+      h1 { max-width: 560px; margin: 17px 0; font-size: clamp(48px, 12vw, 69px); }
+      .hero-lead { font-size: 15px; }
+      .review-visual { min-height: 410px; padding: 22px; }
+      .visual-title { margin-top: 42px; }
+      .trust-items { justify-content: flex-start; gap: 10px 18px; }
+      .trust-intro { width: 100%; }
+      .section { padding-block: 72px; }
+      .section-heading { grid-template-columns: 1fr; gap: 16px; margin-bottom: 24px; }
+      h2 { font-size: clamp(37px, 10vw, 50px); }
+      .section-heading > p { font-size: 14px; }
+      .definition-grid { grid-template-columns: 1fr; }
+      .definition-main { padding: 24px; }
+      .definition-main p { font-size: 15px; }
+      .scope-card { min-height: 205px; }
+      .method-section, .work-section { padding-block: 72px; }
+      .method-grid { grid-template-columns: 1fr 1fr; margin-top: 29px; }
+      .method-step { min-height: 166px; padding: 17px 14px 20px 0; }
+      .method-step:nth-child(even)::after { display: none; }
+      .method-step:nth-child(n+3) { border-top: 1px solid #aac3b33d; }
+      .method-step:nth-child(3)::after { display: block; }
+      .method-step h3 { margin-top: 25px; }
+      .case-card { grid-template-columns: 52px minmax(0, 1fr); align-items: start; gap: 15px; padding: 19px 17px; }
+      .case-id { min-height: 72px; padding-right: 12px; }
+      .case-id strong { font-size: 10px; }
+      .case-icon { width: 29px; height: 29px; }
+      .case-status { grid-column: 2; justify-self: start; max-width: none; margin-top: -6px; }
+      .case-copy h3 { font-size: 14px; }
+      .case-copy p { font-size: 11px; }
+      .lab-section { padding-block: 72px; }
+      .lab-card { grid-template-columns: 1fr; gap: 28px; padding: 28px 23px; }
+      .lab-fact { min-height: 76px; padding: 12px; }
+      .lab-fact strong { font-size: 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 20px; }
+      .about-heading h2 { max-width: 520px; }
+      .about-copy p { font-size: 14px; }
+      .boundaries { grid-template-columns: 1fr; gap: 15px; margin-top: 37px; }
+      .boundary-note { justify-self: start; }
+      .footer-inner { min-height: 90px; flex-wrap: wrap; justify-content: space-between; padding-block: 17px; }
+      .footer-inner > small { order: 3; width: 100%; }
+    }
+    @media (max-width: 390px) {
+      .shell { width: calc(100% - 30px); }
+      .brand-copy small { letter-spacing: .08em; }
+      .nav { gap: 8px; }
+      .nav-cta { padding-inline: 8px; }
+      .nav-cta .nav-cta-label { display: none; }
+      .hero-actions .button { width: 100%; }
+      .review-visual { min-height: 390px; padding: 18px; }
+      .method-step p { font-size: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+    .hero-meta, .work-footnote, .boundaries p, .footer-inner small { color: #53695d; }
+    @media(max-width:380px){.nav{flex-wrap:wrap; padding-block:10px}.nav-cta{margin-left:auto}.brand-copy small{letter-spacing:.06em}}
+
+    /* Aether 2.0: restrained editorial polish, original palette and layout. */
+    .release-tag { display: inline-block; margin-left: 3px; padding: 3px 5px; border: 1px solid #bfcfc1; border-radius: 5px; background: #e9eee5; color: #365c4d; font-size: 9px; vertical-align: 2px; }
+    .hero-copy h1 { text-wrap: balance; }
+    .review-visual { border-color: #426a5f; box-shadow: 0 20px 52px #2949411c; }
+    .visual-mark { right: 22px; bottom: 72px; width: 38px; height: 38px; opacity: .16; pointer-events: none; }
+    .visual-bottom { align-items: baseline; line-height: 1.6; }
+    .visual-bottom span:last-child { text-align: right; }
+    .case-card:focus-within { border-color: #789b83; box-shadow: 0 0 0 2px #dbe7d7; }
+    .case-link { min-height: 32px; display: inline-flex; align-items: center; gap: 8px; text-underline-offset: 4px; }
+    .case-link:hover { text-decoration: underline; }
+    .definition-main, .case-card { box-shadow: 0 2px 8px #244c4004; }
+    .nav-cta:focus-visible, .button:focus-visible { outline-color: #335d4d; outline-offset: 4px; }
+    @media(max-width:700px) { .visual-bottom { gap: 20px; } .visual-mark { bottom: 77px; } .release-tag { padding: 2px 4px; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="masthead">
+    <nav class="nav shell" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Aether 2.0 home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M16 47 29.5 17.5a2.75 2.75 0 0 1 5 0L48 47M23 35h18" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="brand-copy"><strong>AETHER <span class="release-tag">2.0</span></strong><small>AI governance &amp; product risk</small></span>
+      </a>
+      <div class="nav-links" aria-label="Page sections">
+        <a href="#method">Method</a><a href="#work">Case studies</a><a href="#about">About</a>
+      </div>
+      <details class="mobile-nav">
+        <summary aria-label="Open navigation">Menu</summary>
+        <div class="mobile-nav-panel"><a href="#method">Method</a><a href="#work">Case studies</a><a href="#about">About</a></div>
+      </details>
+      <a class="nav-cta" href="lab/index.html" aria-label="Open the evaluation lab"><span class="nav-cta-label">Open the lab</span><span aria-hidden="true">→</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero shell" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow">Independent AI assurance portfolio</div>
+        <h1 id="hero-title">Better AI starts <em>before launch.</em></h1>
+        <p class="hero-lead">AETHER is my hands-on project for examining how AI products handle uncertainty, sensitive information, and high-impact situations—then turning evidence into practical safeguards and clear release recommendations.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#work">Explore the work <span class="button-arrow" aria-hidden="true">→</span></a>
+          <a class="button button-quiet" href="lab/index.html">Try the evaluation lab <span class="button-arrow" aria-hidden="true">→</span></a>
+        </div>
+        <div class="hero-meta"><span>Human-led, evidence-first</span><span>Built in northwest Washington</span></div>
+      </div>
+      <aside class="review-visual" aria-label="AETHER review process: understand context, evaluate evidence, advise on safeguards">
+        <svg class="contours" viewBox="0 0 650 440" aria-hidden="true">
+          <path d="M-30 128c77-71 144-63 202 0s108 73 180 7 151-83 328-44"/><path d="M-30 151c77-71 144-63 202 0s108 73 180 7 151-83 328-44"/><path d="M-30 174c77-71 144-63 202 0s108 73 180 7 151-83 328-44"/><path d="M-30 197c77-71 144-63 202 0s108 73 180 7 151-83 328-44"/><path d="M-30 220c77-71 144-63 202 0s108 73 180 7 151-83 328-44"/><path d="M-30 243c77-71 144-63 202 0s108 73 180 7 151-83 328-44"/><path d="M-30 266c77-71 144-63 202 0s108 73 180 7 151-83 328-44"/><path d="M-30 289c77-71 144-63 202 0s108 73 180 7 151-83 328-44"/><path d="M-30 312c77-71 144-63 202 0s108 73 180 7 151-83 328-44"/><path d="M-30 335c77-71 144-63 202 0s108 73 180 7 151-83 328-44"/><path d="M-30 358c77-71 144-63 202 0s108 73 180 7 151-83 328-44"/>
+        </svg>
+        <div class="visual-top"><span class="visual-index">AETHER / REVIEW 001</span><span class="live-label">Portfolio prototype</span></div>
+        <h2 class="visual-title">AI product review</h2>
+        <div class="visual-subtitle">A decision process grounded in evidence.</div>
+        <div class="review-path">
+          <div class="path-step"><div><strong>Understand the context</strong><br><small>Users · data · intended use</small></div><span class="path-state">Define</span></div>
+          <div class="path-step"><div><strong>Evaluate behavior</strong><br><small>Test a real response</small></div><span class="path-state">Observe</span></div>
+          <div class="path-step"><div><strong>Recommend safeguards</strong><br><small>Make risks actionable</small></div><span class="path-state">Advise</span></div>
+        </div>
+        <div class="visual-bottom"><span>Current case focus</span><span>Fictional healthcare support AI</span></div>
+        <svg class="visual-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="27" stroke="currentColor"/><path d="M17 45 29.5 18a2.75 2.75 0 0 1 5 0L47 45M23.5 34h17" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </aside>
+    </section>
+
+    <div class="trust-strip" aria-label="Project scope">
+      <div class="trust-items shell"><span class="trust-intro">AETHER, clearly scoped</span><span class="trust-pill">Fictional scenarios</span><span class="trust-pill">Manual human ratings</span><span class="trust-pill">No model API connection</span><span class="trust-pill">Educational portfolio work</span></div>
+    </div>
+
+    <section class="section shell" id="what" aria-labelledby="what-title">
+      <div class="section-heading">
+        <div><div class="section-label">01 / The idea</div><h2 id="what-title">A practice space for responsible release decisions.</h2></div>
+        <p>AI products can be useful and still create risks. AETHER is where I practice asking what could go wrong, what the evidence shows, and what a product team could change before launch.</p>
+      </div>
+      <div class="definition-grid">
+        <div class="definition-main"><p><strong>In plain language:</strong> I take a fictional AI product scenario, review the available evidence or plan a focused test, and examine the result for privacy, reliability, safety, and accessibility. Then I explain the evidence, name the remaining uncertainty, and recommend a responsible next step.</p></div>
+        <aside class="scope-card"><span class="scope-overline">The decision question</span><strong>Is this ready for people—or does it need another look?</strong><small>AETHER practices the judgment behind that decision. It does not certify real products.</small></aside>
+      </div>
+    </section>
+
+    <section class="method-section" id="method" aria-labelledby="method-title">
+      <div class="shell">
+        <div class="section-heading">
+          <div><div class="section-label">02 / The method</div><h2 id="method-title">Move from concern to clear next step.</h2></div>
+          <p>A useful review connects product context to observed behavior, then makes the recommendation specific enough to act on.</p>
+        </div>
+        <div class="method-grid" aria-label="Six steps in an AETHER review">
+          <article class="method-step"><div class="method-number">01 / FRAME</div><h3>Understand the use</h3><p>Who is affected, what the system does, and what information is involved?</p></article>
+          <article class="method-step"><div class="method-number">02 / MAP</div><h3>Identify risk</h3><p>Where could privacy, safety, accuracy, or access break down?</p></article>
+          <article class="method-step"><div class="method-number">03 / MEASURE</div><h3>Evaluate evidence</h3><p>Test a defined scenario and record what is known and missing.</p></article>
+          <article class="method-step"><div class="method-number">04 / IMPROVE</div><h3>Recommend safeguards</h3><p>Describe practical changes and the concerns they address.</p></article>
+          <article class="method-step"><div class="method-number">05 / DECIDE</div><h3>Assess readiness</h3><p>State whether to proceed, add conditions, pause, or reassess.</p></article>
+          <article class="method-step"><div class="method-number">06 / COMMUNICATE</div><h3>Explain the decision</h3><p>Show the evidence, reasoning, owners, and next steps.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="work-section" id="work" aria-labelledby="work-title">
+      <div class="shell">
+        <div class="work-heading">
+          <div class="section-heading"><div><div class="section-label">03 / Case studies</div><h2 id="work-title">Learning in the open.</h2></div><p>These fictional exercises separate observed responses from open questions. R-01 is a notes-reported exploratory check and P-01 is a scenario-based privacy review; E-01 is a tabletop launch review with no model tests or product evidence.</p></div>
+        </div>
+        <div class="case-list">
+          <article class="case-card">
+            <div class="case-id"><strong>R-01</strong><span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 12h3l2.5-6 4 12 2.8-6H21"/></svg></span></div>
+            <div class="case-copy"><h3>When the answer is missing</h3><p>Explored whether an assistant would invent clinic hours without a verified source. Saved notes report two responses that avoided an exact time; full transcripts and model details are missing. That is a useful observation from a small exercise—not a broad reliability finding.</p><a class="case-link" href="case-studies/r-01.html">Open the case file <span aria-hidden="true">→</span></a></div>
+            <span class="case-status">Notes only · transcripts missing</span>
+          </article>
+          <article class="case-card">
+            <div class="case-id"><strong>P-01</strong><span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg></span></div>
+            <div class="case-copy"><h3>What belongs in a healthcare reminder?</h3><p>Revisited an AI-written appointment message after spotting uncertainty around shared phones, sensitive details, and permission to contact. The recommendation shifted to conditional approval pending a privacy review and safeguards.</p><a class="case-link" href="case-studies/p-01.html">Open the case file <span aria-hidden="true">→</span></a></div>
+            <span class="case-status">Review refined</span>
+          </article>
+          <article class="case-card">
+            <div class="case-id"><strong>E-01</strong><span class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14v16H5zM9 9h6M9 13h6M9 17h3"/></svg></span></div>
+            <div class="case-copy"><h3>Where should the launch gate be?</h3><p>A tabletop review of a fictional healthcare assistant. The risk register, test plan, evidence gaps, and proposed launch gates lead to a clear recommendation: hold the decision until responsible owners provide evidence.</p><a class="case-link" href="case-studies/e-01.html">Open the case file <span aria-hidden="true">→</span></a></div>
+            <span class="case-status">Tabletop · no product tests</span>
+          </article>
+        </div>
+        <p class="work-footnote">These are educational, scenario-based portfolio exercises—not audits of real organizations, clinical evaluations, or certifications. E-01 is a structured tabletop review, not a finding about a real product.</p>
+      </div>
+    </section>
+
+    <section class="lab-section shell" aria-labelledby="lab-title">
+      <div class="lab-card">
+        <div class="lab-copy"><div class="section-label">04 / Try the prototype</div><h2 id="lab-title">Run a test. Make your own call.</h2><p>The AETHER Evaluation Lab gives you five fictional appointment-support scenarios. Copy a prompt into a fresh AI chat, paste the actual response, score the rubric, and export your notes.</p><a class="button button-primary" href="lab/index.html">Open the evaluation lab <span class="button-arrow" aria-hidden="true">→</span></a><p class="lab-disclaimer">The lab has no model API connection. Your ratings are manual; saved work stays in your browser when storage is available.</p></div>
+        <div class="lab-facts" aria-label="Evaluation lab contents"><div class="lab-fact"><strong>05</strong><span>Fictional scenarios</span></div><div class="lab-fact"><strong>15</strong><span>Review criteria</span></div><div class="lab-fact"><strong>0–2</strong><span>Human rating scale</span></div><div class="lab-fact"><strong>2</strong><span>Report export formats</span></div></div>
+      </div>
+    </section>
+
+    <section class="about-section" id="about" aria-labelledby="about-title">
+      <div class="shell">
+        <div class="about-grid">
+          <div class="about-heading"><div class="section-label">05 / Why I’m building it</div><h2 id="about-title">I want to help guide what technology becomes.</h2></div>
+          <div class="about-copy"><p>I’m studying cybersecurity at Bellingham Technical College and plan to transfer to Western Washington University’s Cybersecurity B.S. program in Fall 2027. As I build my technical foundation, I’m especially drawn to the decisions that shape how new products affect people.</p><p>AETHER helps me practice that work: <strong>understand the system, weigh the evidence, recommend safeguards, and communicate a clear decision.</strong> I’m building toward roles in technical AI governance, AI product risk, and responsible innovation.</p><div class="direction-row" aria-label="Professional interests"><span class="direction-chip">Technical AI governance</span><span class="direction-chip">AI product risk</span><span class="direction-chip">Responsible AI</span><span class="direction-chip">Product assurance</span></div></div>
+        </div>
+        <div class="boundaries"><div><h3>Honest scope matters</h3><p>AETHER is an independent learning and portfolio project. Its scenarios are fictional, its results are human judgments of specific responses, and its current exercises are small pilots. They do not establish that a model is safe across other prompts or suitable for clinical use.</p></div><div class="boundary-note">Better decisions need clear evidence—and a clear account of what remains unknown.</div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner shell">
+      <a class="footer-brand" href="#top" aria-label="Aether 2.0, return to top"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M16 47 29.5 17.5a2.75 2.75 0 0 1 5 0L48 47M23 35h18" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><strong>AETHER <span class="release-tag">2.0</span></strong></a>
+      <small>Independent AI governance &amp; product risk portfolio · Northwest Washington</small>
+      <a class="footer-top" href="#top">Back to top</a>
+    </div>
+  </footer>
+</body>
+</html>

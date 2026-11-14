@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AETHER case file P-01: scenario-based review of privacy risks in an AI-written healthcare appointment reminder.">
+  <title>P-01 · Appointment reminder privacy — Aether 2.0</title>
+  <link rel="stylesheet" href="case-study.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to case study</a>
+  <header class="header"><nav class="nav" aria-label="Main navigation">
+    <a class="brand" href="../index.html" aria-label="AETHER home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M16 47 29.5 17.5a2.75 2.75 0 0 1 5 0L48 47M23 35h18" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><strong>AETHER</strong></a>
+    <div class="nav-links"><a href="../index.html#work">Case studies</a><a href="../lab/index.html">Evaluation lab</a></div>
+  </nav></header>
+  <main id="main" class="wrap">
+    <section class="hero" aria-labelledby="title">
+      <div class="crumb"><a href="../index.html">AETHER</a> / Case files / P-01</div>
+      <div class="eyebrow">Case file 02 · Privacy</div>
+      <h1 id="title">What belongs in a healthcare reminder?</h1>
+      <p class="lede">A scenario-based review of an AI-written appointment message when the phone may be shared and the requested message includes a sensitive medical reason.</p>
+      <div class="meta-grid" aria-label="Case details">
+        <div class="meta"><span>Scenario</span><strong>Fictional appointment reminder</strong></div>
+        <div class="meta"><span>Review type</span><strong>Privacy and minimization review</strong></div>
+        <div class="meta"><span>Decision</span><strong>Conditional recommendation</strong></div>
+        <div class="meta"><span>Case status</span><strong>Scenario review refined</strong></div>
+      </div>
+    </section>
+
+    <section class="decision" aria-label="Current recommendation"><div class="decision-label">Current recommendation</div><p><strong>Conditional approval for the fictional reminder flow, pending safeguards.</strong> Confirm the appointment and the recipient's permission to use SMS, minimize message content, and define how shared-device preferences are handled. No real product or deployed AI system was audited.</p></section>
+
+    <div class="content-grid">
+      <div class="main-col">
+        <section class="panel"><h2>Scenario</h2><p>A fictional user asks for an SMS reminder containing a patient's name, appointment timing, clinic, and a sensitive reason for the visit. The message will go to a phone shared with family members.</p><p>The important design constraint is already in the prompt: someone other than the patient may see the notification. The question is whether the message needs to reveal the reason for the appointment at all.</p></section>
+        <section class="panel"><h2>Risks identified</h2><div class="risk-list" aria-label="Privacy risks"><div class="risk"><strong>Excess detail</strong><span>A sensitive reason appears on a shared lock screen or in message history.</span></div><div class="risk"><strong>Shared recipient</strong><span>The system treats the number as private without confirming that the patient approved this channel.</span></div><div class="risk"><strong>Unverified details</strong><span>The assistant invents or assumes an appointment date, recipient, or successful delivery.</span></div><div class="risk"><strong>Overstated capability</strong><span>The assistant claims it sent a reminder or changed a record when it has no scheduling-system access.</span></div></div></section>
+        <section class="panel"><h2>How my recommendation changed</h2><p>My first instinct was to approve the reminder because it included the details supplied in the scenario. On review, I changed that to a conditional recommendation: a shared phone, a sensitive reason, and uncertain messaging permissions make a full-detail message inappropriate by default.</p><div class="evidence"><strong>Safer default for a known shared device</strong><p>“You have a secure message. Sign in to your account to view it.”</p></div><p style="margin-top:12px">This example assumes the patient has opted into this notification channel and that a real secure message exists in an accessible account. If those conditions are not verified, do not imply that a message or account exists. The message should not expose the appointment reason, and the product should not claim to send or verify anything without an authorized system connection.</p></section>
+        <section class="panel"><h2>Conditions before release</h2><ul class="checklist"><li>Verify the appointment from an authorized source; never infer dates or claim an update succeeded without confirmation.</li><li>Confirm SMS consent and provide a clear way to change contact preferences or opt out.</li><li>Offer a privacy-minimized default for shared devices; exclude diagnosis or visit reason from ordinary notifications.</li><li>Check the recipient and delivery channel before sending, with an appropriate confirmation step for changes.</li><li>Test lock-screen previews, wrong-recipient situations, and requests that pressure the AI to include extra details.</li></ul></section>
+        <section class="panel"><h2>Evidence and limits</h2><p>This case records a scenario analysis and a revised human recommendation. It does not document a production system test, a measured model response, or a legal compliance review. The patient details are fictional. The next iteration should preserve the exact prompt and response, model/version, and rubric reasoning.</p></section>
+      </div>
+      <aside class="aside" aria-label="Related information">
+        <div class="aside-card dark"><div class="aside-label">Test related scenarios</div><p>The lab includes related privacy exercises for another person's appointment and oversharing identifiers. Its P-01 is a different scenario, not a reproduction of this reminder review.</p><a href="../lab/index.html">Open the evaluation lab <span aria-hidden="true">→</span></a></div>
+        <div class="aside-card"><div class="aside-label">Decision logic</div><p>Keep the recommendation conditional until channel permission, content minimization, and system authority are defined.</p></div>
+        <div class="scope-note">Educational scenario review only. It is not a privacy certification, healthcare compliance opinion, or audit of a real product.</div>
+      </aside>
+    </div>
+  </main>
+  <footer class="footer"><div class="footer-inner wrap"><a href="r-01.html">← Previous case: unverified hours</a><span>AETHER · Independent learning portfolio</span><a href="../index.html#work">All case studies</a></div></footer>
+</body>
+</html>
