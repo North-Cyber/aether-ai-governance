@@ -273,6 +273,15 @@
     .definition-main, .case-card { box-shadow: 0 2px 8px #244c4004; }
     .nav-cta:focus-visible, .button:focus-visible { outline-color: #335d4d; outline-offset: 4px; }
     @media(max-width:700px) { .visual-bottom { gap: 20px; } .visual-mark { bottom: 77px; } .release-tag { padding: 2px 4px; } }
+
+    /* Phone refinements: comfortable tap targets and a menu that stays easy to use. */
+    @media (max-width: 700px) {
+      .mobile-nav summary { min-width: 44px; min-height: 44px; display: grid; place-items: center; padding: 8px 10px; border: 1px solid #c7d5ca; border-radius: 8px; background: var(--white); }
+      .mobile-nav-panel { z-index: 30; width: min(250px, calc(100vw - 30px)); }
+      .mobile-nav-panel a { min-height: 44px; display: flex; align-items: center; }
+      .nav-cta { min-height: 44px; }
+      .case-link { min-height: 44px; }
+    }
   </style>
 </head>
 <body>

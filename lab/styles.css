@@ -186,3 +186,17 @@ footer span { display: block; }
 
 /* Acceptance review: small supporting labels retain readable contrast. */
 .stat strong small, .prompt-label span:last-child { color: #536b5b; }
+
+/* Phone refinements: thumb-sized controls, readable fields, and swipeable scenarios. */
+@media(max-width:700px) {
+  .portfolio-link { min-height: 44px; display: inline-flex; align-items: center; }
+  #scenario-list { -webkit-overflow-scrolling: touch; overscroll-behavior-inline: contain; scroll-snap-type: x proximity; scroll-padding-inline: 10px; scrollbar-color: #90a891 #edf1e9; }
+  .case-nav { min-height: 54px; flex-basis: min(78vw, 220px); scroll-snap-align: start; }
+  input:not([type="checkbox"]), textarea { font-size: 16px; }
+  .checkbox-field input { width: 20px; height: 20px; }
+  .btn, .brief-details summary { min-height: 44px; }
+  .rating { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+  .rating button { min-width: 0; min-height: 44px; width: 100%; padding: 8px 6px; font-size: 12px; }
+  .checkbox-field { font-size: 14px; }
+  #toast { right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); }
+}

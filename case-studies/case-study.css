@@ -114,3 +114,14 @@ h1 { max-width:780px; margin:17px 0 14px; font:400 clamp(44px,7vw,72px)/1.02 Geo
 .main-col { grid-template-columns: minmax(0, 1fr); } .panel { min-width: 0; }
 
 .dark .decision-label { color: #b8d0bf; }
+
+/* Phone refinements: keep navigation easy to tap and tables smooth to swipe. */
+@media(max-width:760px) {
+  .table-scroll { -webkit-overflow-scrolling: touch; overscroll-behavior-inline: contain; scrollbar-color: #90a891 #f0f3ec; }
+}
+@media(max-width:440px) {
+  .nav-links a { min-height: 44px; display: inline-flex; align-items: center; }
+  .meta { min-width: 0; padding-inline: 11px; }
+  .meta strong { overflow-wrap: anywhere; }
+  .panel, .decision { overflow-wrap: anywhere; }
+}
